@@ -19,7 +19,7 @@ int main()
     printf("\nPointer to an array:\n");
     for (int i = 0; i < 3; i++)
     {
-        printf("Value of arr[%d] = %d\n", i, *(ptrToArr + 1));
+        printf("Value of arr[%d] = %d\n", i, *(ptrToArr + i));
     }
 
     return 0;

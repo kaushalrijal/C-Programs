@@ -2,9 +2,7 @@
 
 int main()
 {
-    int arr[5] = {10, 20, 30, 40, 50};
-    int *p;
-    int i;
+    int arr[5] = {10, 20, 30, 40, 50}, *p, i;
 
     p = arr; // Assigning the address of the array to the pointer
 

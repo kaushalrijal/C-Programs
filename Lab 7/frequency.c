@@ -15,7 +15,7 @@ void input(int a[], int *size)
 
 int main()
 {
-    int a[100], size, count, visited = -1, freq[100];
+    int a[100], size, count, freq[100];
     input(a, &size);
     for (int i = 0; i < size; i++)
     {
@@ -28,7 +28,7 @@ int main()
                 freq[j] = -1;
             }
         }
-        if (freq[i] != visited)
+        if (freq[i] != -1)
         {
             freq[i] = count;
             printf("Element: %d\tFrequency: %d\n", a[i], freq[i]);

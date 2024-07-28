@@ -1,68 +1,83 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
 
-struct employee
+#define SIZE 10
+
+int data; // To count the number of employees
+
+typedef struct employee
 {
     int empno;
-    char name[50];
-    int salary;
-    char address[100];
-};
+    char name[30];
+    float salary;
+} emp;
 
-void Input(struct employee *);
-void Display(struct employee *);
-void Updatesal(struct employee *);
+void add_record(emp e[])
+{
+    printf("Enter the empno, ename and salary: ");
+    scanf("%d %s %f", &e[data].empno, &e[data].name, &e[data].salary);
+    data++;
+}
+void display_record(emp e[])
+{
+    int i;
+    if (data == 0)
+    {
+        printf("No records found!");
+    }
+    else
+    {
+        for (i = 0; i < data; i++)
+        {
+            printf("%d\t%s\t%f\n", e[i].empno, e[i].name, e[i].salary);
+        }
+    }
+}
+void update_record(emp e[])
+{
+    int tempno, i;
+    printf("Enter the empno whose salary is to be increased: ");
+    scanf("%d", &tempno);
+    for (i = 0; i < data; i++)
+    {
+        if (tempno == e[i].empno)
+        {
+            e[i].salary *= i;
+            printf("%s salary is increased.", e[i].name);
+            break;
+        }
+    }
+    if (i == data)
+        printf("Employee not found");
+}
 
 int main()
 {
-    int c;
-    struct employee emp;
-
-    Input(&emp);
-
+    int choice;
+    emp e[SIZE];
     while (1)
     {
-        printf("\n-----Employee Record-----\n1) Input\n2) Display\n3) Update Salary\n4) Exit\nPlease choose an option: ");
-        scanf("%d", &c);
-        switch (c)
+        system("cls");
+        printf("Employee Management System\n1.Add Employee\n2.Display Record\n3.Update Record\n4.Exit\n");
+        scanf("%d", &choice);
+        switch (choice)
         {
         case 1:
-            Input(&emp);
+            add_record(e);
             break;
         case 2:
-            Display(&emp);
+            display_record(e);
             break;
         case 3:
-            Updatesal(&emp);
+            update_record(e);
             break;
         case 4:
-            return 0;
+            exit(0);
         default:
-            printf("Invalid Choice!\n");
+            printf("Invalid Input");
+            break;
         }
+        getche();
     }
-    return 0;
-}
-
-void Input(struct employee *emp)
-{
-    printf("Enter employee number: ");
-    scanf("%d", &emp->empno);
-
-    printf("Enter employee name: ");
-    scanf(" %s", &emp->name);
-
-    printf("Enter employee salary: ");
-    scanf("%d", &emp->salary);
-
-    printf("Enter employee adress: ");
-    scanf(" %s", &emp->address);
-}
-void Display(struct employee *emp)
-{
-    printf("Employee No.: %d\nEmployee Name: %s\nEmployee Salary: %d\nEmployee Address: %s", emp->empno, emp->name, emp->salary, emp->address);
-}
-void Updatesal(struct employee *emp)
-{
-    printf("Enter the updated salary: ");
-    scanf("%d", &emp->salary);
 }
